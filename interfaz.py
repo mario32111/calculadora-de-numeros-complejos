@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Nov 12 13:42:54 2023
+Created on Sun Nov 12 15:00:01 2023
 
 @author: mario
 """
@@ -9,14 +9,14 @@ import tkinter as tk
 from tkinter import font
 
 class Eventos:
-    def bot_click(self,boton):
-        boton.config(background="gray")
+    def bot_click(self, event):
+        print("Botón pulsado:", event.widget.cget("text"))
 
-    def bot_m(self, boton):
-        boton.config(background="light blue")
+    def bot_m(self, event):
+        event.widget.config(background="light blue")
 
-    def bot_m2(self,boton):
-        boton.config(background="light gray")
+    def bot_m2(self, event):
+        event.widget.config(background="light gray")
 
 class EventosTk(tk.Tk):
     def __init__(self):
@@ -24,170 +24,29 @@ class EventosTk(tk.Tk):
 
         self.geometry("325x530")
         self.title("Calculadora")
-        self.config(bg="black")
+        self.config(bg="gray")
+        self.botones=[]
         fuente_externa = font.Font(family="LCDDot TR", size=19)
 
-        b1 = tk.Button(self, text="1", width=10, height=3, background="light gray", font=fuente_externa)
-        b1.bind("<Button-1>", lambda event: eventos.bot_click(b1))
-        b1.bind("<Enter>", lambda event: eventos.bot_m(b1))
-        b1.bind("<Leave>", lambda event: eventos.bot_m2(b1))
-        b1.place(x=0,y=250)
-        b2= tk.Button(self, text="2", width=10, height=3, background="light gray", font=fuente_externa)
-        b2.bind("<Button-1>", lambda event: eventos.bot_click(b2))
-        b2.bind("<Enter>", lambda event: eventos.bot_m(b2))
-        b2.bind("<Leave>", lambda event: eventos.bot_m2(b2))
-        b2.place(x=80,y=250)
-        b3= tk.Button(self, text="3", width=10, height=3, background="light gray", font=fuente_externa)
-        b3.bind("<Button-1>", lambda event: eventos.bot_click(b3))
-        b3.bind("<Enter>", lambda event: eventos.bot_m(b3))
-        b3.bind("<Leave>", lambda event: eventos.bot_m2(b3))
-        b3.place(x=160,y=250)
-        b4= tk.Button(self, text="4", width=10, height=3, background="light gray", font=fuente_externa)
-        b4.bind("<Button-1>", lambda event: eventos.bot_click(b4))
-        b4.bind("<Enter>", lambda event: eventos.bot_m(b4))
-        b4.bind("<Leave>", lambda event: eventos.bot_m2(b4))
-        b4.place(x=0,y=305)
-        b5= tk.Button(self, text="5", width=10, height=3, background="light gray", font=fuente_externa)
-        b5.bind("<Button-1>", lambda event: eventos.bot_click(b5))
-        b5.bind("<Enter>", lambda event: eventos.bot_m(b5))
-        b5.bind("<Leave>", lambda event: eventos.bot_m2(b5))
-        b5.place(x=80,y=305)
-        b6= tk.Button(self, text="6", width=10, height=3, background="light gray", font=fuente_externa)
-        b6.bind("<Button-1>", lambda event: eventos.bot_click(b6))
-        b6.bind("<Enter>", lambda event: eventos.bot_m(b6))
-        b6.bind("<Leave>", lambda event: eventos.bot_m2(b6))
-        b6.place(x=160,y=305)
-        b7= tk.Button(self, text="7", width=10, height=3, background="light gray", font=fuente_externa)
-        b7.bind("<Button-1>", lambda event: eventos.bot_click(b7))
-        b7.bind("<Enter>", lambda event: eventos.bot_m(b7))
-        b7.bind("<Leave>", lambda event: eventos.bot_m2(b7))
-        b7.place(x=0,y=360)
-        b8= tk.Button(self, text="8", width=10, height=3, background="light gray", font=fuente_externa)
-        b8.bind("<Button-1>", lambda event: eventos.bot_click(b8))
-        b8.bind("<Enter>", lambda event: eventos.bot_m(b8))
-        b8.bind("<Leave>", lambda event: eventos.bot_m2(b8))
-        b8.place(x=80,y=360)
-        b9= tk.Button(self, text="9", width=10, height=3, background="light gray", font=fuente_externa)
-        b9.bind("<Button-1>", lambda event: eventos.bot_click(b9))
-        b9.bind("<Enter>", lambda event: eventos.bot_m(b9))
-        b9.bind("<Leave>", lambda event: eventos.bot_m2(b9))
-        b9.place(x=160,y=360)
-        b0= tk.Button(self, text="0", width=10, height=3, background="light gray", font=fuente_externa)
-        b0.bind("<Button-1>", lambda event: eventos.bot_click(b0))
-        b0.bind("<Enter>", lambda event: eventos.bot_m(b0))
-        b0.bind("<Leave>", lambda event: eventos.bot_m2(b0))
-        b0.place(x=160,y=360)
-        b0.place(x=80,y=415)
-        #Botones operciones
-        bpor= tk.Button(self, text="x", width=10, height=3, background="light gray", font=fuente_externa)
-        bpor.bind("<Button-1>", lambda event: eventos.bot_click(bpor))
-        bpor.bind("<Enter>", lambda event: eventos.bot_m(bpor))
-        bpor.bind("<Leave>", lambda event: eventos.bot_m2(bpor))
-        bpor.place(x=240,y=250)
-        bmenos= tk.Button(self, text="-", width=10, height=3, background="light gray", font=fuente_externa)
-        bmenos.bind("<Button-1>", lambda event: eventos.bot_click(bmenos))
-        bmenos.bind("<Enter>", lambda event: eventos.bot_m(bmenos))
-        bmenos.bind("<Leave>", lambda event: eventos.bot_m2(bmenos))
-        bmenos.place(x=240,y=305)
-        bmas= tk.Button(self, text="+", width=10, height=3, background="light gray", font=fuente_externa)
-        bmas.bind("<Button-1>", lambda event: eventos.bot_click(bmas))
-        bmas.bind("<Enter>", lambda event: eventos.bot_m(bmas))
-        bmas.bind("<Leave>", lambda event: eventos.bot_m2(bmas))
-        bmas.place(x=240,y=360)
-        bigual= tk.Button(self, text="=", width=10, height=3, background="light gray", font=fuente_externa)
-        bigual.bind("<Button-1>", lambda event: eventos.bot_click(bigual))
-        bigual.bind("<Enter>", lambda event: eventos.bot_m(bigual))
-        bigual.bind("<Leave>", lambda event: eventos.bot_m2(bigual))
-        bigual.place(x=240,y=415)
-        #otros botones
-        bpunto= tk.Button(self, text=".", width=10, height=3, background="light gray", font=fuente_externa)
-        bpunto.bind("<Button-1>", lambda event: eventos.bot_click(bpunto))
-        bpunto.bind("<Enter>", lambda event: eventos.bot_m(bpunto))
-        bpunto.bind("<Leave>", lambda event: eventos.bot_m2(bpunto))
-        bpunto.place(x=160,y=415)
-        bmas_menos= tk.Button(self, text="+/-", width=10, height=3, background="light gray", font=fuente_externa)
-        bmas_menos.bind("<Button-1>", lambda event: eventos.bot_click(bmas_menos))
-        bmas_menos.bind("<Enter>", lambda event: eventos.bot_m(bmas_menos))
-        bmas_menos.bind("<Leave>", lambda event: eventos.bot_m2(bmas_menos))
-        bmas_menos.place(x=0,y=415)
-        bdiv= tk.Button(self, text="/", width=10, height=3, background="light gray", font=fuente_externa)
-        bdiv.bind("<Button-1>", lambda event: eventos.bot_click(bdiv))
-        bdiv.bind("<Enter>", lambda event: eventos.bot_m(bdiv))
-        bdiv.bind("<Leave>", lambda event: eventos.bot_m2(bdiv))
-        bdiv.place(x=80,y=195)
-        braiz= tk.Button(self, text="raiz", width=10, height=3, background="light gray", font=fuente_externa)
-        braiz.bind("<Button-1>", lambda event: eventos.bot_click(braiz))
-        braiz.bind("<Enter>", lambda event: eventos.bot_m(braiz))
-        braiz.bind("<Leave>", lambda event: eventos.bot_m2(braiz))
-        braiz.place(x=160,y=195)
-        bpot= tk.Button(self, text="pot", width=10, height=3, background="light gray", font=fuente_externa)
-        bpot.bind("<Button-1>", lambda event: eventos.bot_click(bpot))
-        bpot.bind("<Enter>", lambda event: eventos.bot_m(bpot))
-        bpot.bind("<Leave>", lambda event: eventos.bot_m2(bpot))
-        bpot.place(x=240,y=195)
-        bce= tk.Button(self, text="CE", width=10, height=3, background="light gray", font=fuente_externa)
-        bce.bind("<Button-1>", lambda event: eventos.bot_click(bce))
-        bce.bind("<Enter>", lambda event: eventos.bot_m(bce))
-        bce.bind("<Leave>", lambda event: eventos.bot_m2(bce))
-        bce.place(x=80,y=145)
-        bc= tk.Button(self, text="C", width=10, height=3, background="light gray", font=fuente_externa)
-        bc.bind("<Button-1>", lambda event: eventos.bot_click(bc))
-        bc.bind("<Enter>", lambda event: eventos.bot_m(bc))
-        bc.bind("<Leave>", lambda event: eventos.bot_m2(bc))
-        bc.place(x=160,y=145)
-        bi= tk.Button(self, text="i", width=10, height=3, background="light gray", font=fuente_externa)
-        bi.bind("<Button-1>", lambda event: eventos.bot_click(bi))
-        bi.bind("<Enter>", lambda event: eventos.bot_m(bi))
-        bi.bind("<Leave>", lambda event: eventos.bot_m2(bi))
-        bi.place(x=0,y=150)
-        bborrar= tk.Button(self, text="borrar", width=10, height=3, background="light gray", font=fuente_externa)
-        bborrar.bind("<Button-1>", lambda event: eventos.bot_click(bborrar))
-        bborrar.bind("<Enter>", lambda event: eventos.bot_m(bborrar))
-        bborrar.bind("<Leave>", lambda event: eventos.bot_m2(bborrar))
-        bborrar.place(x=240,y=145)
-        bpar1= tk.Button(self, text="(", width=10, height=3, background="light gray", font=fuente_externa)
-        bpar1.bind("<Button-1>", lambda event: eventos.bot_click(bpar1))
-        bpar1.bind("<Enter>", lambda event: eventos.bot_m(bpar1))
-        bpar1.bind("<Leave>", lambda event: eventos.bot_m2(bpar1))
-        bpar1.place(x=160,y=95)
-        bpar2= tk.Button(self, text=")", width=10, height=3, background="light gray", font=fuente_externa)
-        bpar2.bind("<Button-1>", lambda event: eventos.bot_click(bpar2))
-        bpar2.bind("<Enter>", lambda event: eventos.bot_m(bpar2))
-        bpar2.bind("<Leave>", lambda event: eventos.bot_m2(bpar2))
-        bpar2.place(x=240,y=95)
-        biz= tk.Button(self, text="iz", width=10, height=3, background="light gray", font=fuente_externa)
-        biz.bind("<Button-1>", lambda event: eventos.bot_click(biz))
-        biz.bind("<Enter>", lambda event: eventos.bot_m(biz))
-        biz.bind("<Leave>", lambda event: eventos.bot_m2(biz))
-        biz.place(x=0,y=95)
-        bder= tk.Button(self, text="der", width=10, height=3, background="light gray", font=fuente_externa)
-        bder.bind("<Button-1>", lambda event: eventos.bot_click(bder))
-        bder.bind("<Enter>", lambda event: eventos.bot_m(bder))
-        bder.bind("<Leave>", lambda event: eventos.bot_m2(bder))
-        bder.place(x=80,y=95)
-        bCart= tk.Button(self, text="NCart", width=10, height=3, background="light gray", font=fuente_externa)
-        bCart.bind("<Button-1>", lambda event: eventos.bot_click(bCart))
-        bCart.bind("<Enter>", lambda event: eventos.bot_m(bCart))
-        bCart.bind("<Leave>", lambda event: eventos.bot_m2(bCart))
-        bCart.place(x=160,y=37)
-        bPol= tk.Button(self, text="NPol", width=10, height=3, background="light gray", font=fuente_externa)
-        bPol.bind("<Button-1>", lambda event: eventos.bot_click(bPol))
-        bPol.bind("<Enter>", lambda event: eventos.bot_m(bPol))
-        bPol.bind("<Leave>", lambda event: eventos.bot_m2(bPol))
-        bPol.place(x=0,y=37)
-        bVG= tk.Button(self, text="Vista gr[afica", width=10, height=3, background="light gray", font=fuente_externa)
-        bVG.bind("<Button-1>", lambda event: eventos.bot_click(bVG))
-        bVG.bind("<Enter>", lambda event: eventos.bot_m(bVG))
-        bVG.bind("<Leave>", lambda event: eventos.bot_m2(bVG))
-        bVG.place(x=80,y=470)
-        #Caja de texto
-        inM=tk.Text(self,width=40, height=2)
-        inM.place(x=0,y=0)
+        botones = [
+            "NCart", "NPol", "Vista grafica","1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+            "x", "-", "+", "=", ".", "+/-", "/", "raiz", "pot", "CE", "C",
+            "i", "borrar", "(", ")", "iz", "der", 
+        ]
 
+        for i, texto in enumerate(botones):
+            boton = tk.Button(self, text=texto, width=10, height=3, background="light gray", font=fuente_externa)
+            boton.bind("<Button-1>", lambda event, boton=boton: eventos.bot_click(event))
+            boton.bind("<Enter>", lambda event, boton=boton: eventos.bot_m(event))
+            boton.bind("<Leave>", lambda event, boton=boton: eventos.bot_m2(event))
+            boton.place(x=(i % 3) * 80, y=(i // 3) * 55 + 250)
+            self.botones.append(boton)
+            
+eventos = Eventos()
+app = EventosTk()
+app.mainloop()
 
-
-
-        """
+"""
         # Cargar una imagen en formato PNG
         imagen_original = Image.open("C:/Users/Mario/Desktop/calculadora de numeros complejos/hola.png")  # Reemplaza "mi_imagen.png" con la ruta de tu imagen PNG
 
@@ -201,7 +60,4 @@ class EventosTk(tk.Tk):
         # Crear un botón con la imagen redimensionada
         boton_con_imagen = tk.Button(ventana, image=imagen_tk, borderwidth=0, relief="flat",highlightthickness=0, highlightbackground="white")
         boton_con_imagen.pack()
-        """
-eventos = Eventos()
-app = EventosTk()
-app.mainloop()
+"""
