@@ -22,16 +22,16 @@ class EventosTk(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.geometry("325x530")
+        self.geometry("400x540")
         self.title("Calculadora")
         self.config(bg="gray")
         self.botones=[]
         fuente_externa = font.Font(family="LCDDot TR", size=19)
 
         botones = [
-            "NCart", "NPol", "Vista grafica","1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-            "x", "-", "+", "=", ".", "+/-", "/", "raiz", "pot", "CE", "C",
-            "i", "borrar", "(", ")", "iz", "der", 
+            "NCart", "NPol", "Vista grafica","i","1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+            "x", "-", "+", "=", ".", "+/-", "/", "raiz", "pot", "CE", "C","borrar", "(", ")",
+            "ESTO NO ES UN BOTON", "iz", "der", 
         ]
 
         for i, texto in enumerate(botones):
@@ -39,7 +39,14 @@ class EventosTk(tk.Tk):
             boton.bind("<Button-1>", lambda event, boton=boton: eventos.bot_click(event))
             boton.bind("<Enter>", lambda event, boton=boton: eventos.bot_m(event))
             boton.bind("<Leave>", lambda event, boton=boton: eventos.bot_m2(event))
-            boton.place(x=(i % 3) * 80, y=(i // 3) * 55 + 250)
+            if i < 27:
+                boton.place(x=(i % 4) * 100, y=(i // 4) * 55 + 100)
+            elif i ==28:
+                pass
+            else:
+                boton.place(x=(i % 4) * 100, y=(i // 4) * 55 + 100)
+                
+
             self.botones.append(boton)
             
 eventos = Eventos()
