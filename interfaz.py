@@ -9,9 +9,14 @@ import tkinter as tk
 from tkinter import font
 
 class Eventos:
-    def bot_click(self, event):
+    def __init__(self):
+        self.ind=0
+    def bot_click(self, event, caja):
         print("Botón pulsado:", event.widget.cget("text"))
-
+        self.ind=self.ind+1
+        caja.config(state="normal")
+        caja.insert(self.ind, event.widget.cget("text"))
+        caja.config(state="readonly")
     def bot_m(self, event):
         event.widget.config(background="light blue")
 
@@ -27,16 +32,23 @@ class EventosTk(tk.Tk):
         self.config(bg="gray")
         self.botones=[]
         fuente_externa = font.Font(family="LCDDot TR", size=19)
+        f2 = font.Font(family="LCDDot TR", size=50)
 
-        botones = [
-            "NCart", "NPol", "Vista grafica","i","1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-            "x", "-", "+", "=", ".", "+/-", "/", "raiz", "pot", "CE", "C","borrar", "(", ")",
+        car_botones = [
+            "NCart", "NPol", "i","Vista grafica","1", "2", "3", "x", "4", "5", "6", "+", "7", "8",
+            "9", "-", "+/-", "0", ".", "=", "/", "raiz", "C", "CE", "Shift","pot", "(", ")",
             "ESTO NO ES UN BOTON", "iz", "der", 
         ]
+        #Caja de texto
+        inM=tk.Entry(self,width=50,font=f2, state="readonly")
+        inM.place(x=0,y=0)
+        
 
-        for i, texto in enumerate(botones):
+
+
+        for i, texto in enumerate(car_botones):
             boton = tk.Button(self, text=texto, width=10, height=3, background="light gray", font=fuente_externa)
-            boton.bind("<Button-1>", lambda event, boton=boton: eventos.bot_click(event))
+            boton.bind("<Button-1>", lambda event, boton=boton: eventos.bot_click(event, inM))
             boton.bind("<Enter>", lambda event, boton=boton: eventos.bot_m(event))
             boton.bind("<Leave>", lambda event, boton=boton: eventos.bot_m2(event))
             if i < 27:
