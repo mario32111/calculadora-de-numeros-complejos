@@ -11,32 +11,69 @@ from tkinter import font
 class Eventos:
     def __init__(self):
         self.ind=0
+
     def bot_click(self, event, caja):
-        print("Botón pulsado:", event.widget.cget("text"))
-        self.ind=self.ind+1
-        caja.config(state="normal")
-        caja.insert(self.ind, event.widget.cget("text"))
-        caja.config(state="readonly")
+        
+        if (event.widget.cget("text") == "iz" ):
+            self.ind-=1
+                
+        elif (event.widget.cget("text") == "der" ):
+            self.ind+=1
+        else:
+            print("Botón pulsado:", event.widget.cget("text"))
+            self.ind=self.ind+1
+            caja.config(state="normal")
+            
+            if (event.widget.cget("text")== "CE"):
+                self.ind=0
+                caja.delete(0, tk.END)
+                
+            elif event.widget.cget("text")=="NCa" or event.widget.cget("text")=="NPo":
+                caja.insert(self.ind,event.widget.cget("text")+"()")
+                self.ind+=2
+                caja.config(state="readonly")
+                
+            elif (event.widget.cget("text") == "C"): 
+                self.ind-=1
+                cont=caja.get()
+                if cont [-1]== ")":
+                    self.ind-=1
+                    cont=cont [:-2]
+                    caja.delete(0, tk.END)
+                    caja.insert(0,cont +")")
+                    caja.config(state="readonly")
+                else:
+                    cont=cont [:-1]
+                    caja.delete(0, tk.END)
+                    caja.insert(0,cont)
+                    caja.config(state="readonly")
+                
+            elif (event.widget.cget("text") != "CE" ):
+                caja.insert(self.ind, event.widget.cget("text"))
+                caja.config(state="readonly")
+            print(self.ind)
+
     def bot_m(self, event):
         event.widget.config(background="light blue")
 
     def bot_m2(self, event):
         event.widget.config(background="light gray")
+        
 
 class EventosTk(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.geometry("400x540")
+        self.geometry("400x480")
         self.title("Calculadora")
         self.config(bg="gray")
         self.botones=[]
-        fuente_externa = font.Font(family="LCDDot TR", size=19)
-        f2 = font.Font(family="LCDDot TR", size=50)
+        fuente_externa = font.Font(family="Calculator", size=19)
+        f2 = font.Font(family="Calculator", size=50)
 
         car_botones = [
-            "NCart", "NPol", "i","Vista grafica","1", "2", "3", "x", "4", "5", "6", "+", "7", "8",
-            "9", "-", "+/-", "0", ".", "=", "/", "raiz", "C", "CE", "Shift","pot", "(", ")",
+            "NCa", "NPo", "i","VG","1", "2", "3", "x", "4", "5", "6", "+", "7", "8",
+            "9", "-", "+/-", "0", ".", "=", "/", "√", "C", "CE", "Shift","pot", "(", ")",
             "ESTO NO ES UN BOTON", "iz", "der", 
         ]
         #Caja de texto
@@ -47,16 +84,16 @@ class EventosTk(tk.Tk):
 
 
         for i, texto in enumerate(car_botones):
-            boton = tk.Button(self, text=texto, width=10, height=3, background="light gray", font=fuente_externa)
+            boton = tk.Button(self, text=texto, width=9, height=1, background="light gray", font=fuente_externa)
             boton.bind("<Button-1>", lambda event, boton=boton: eventos.bot_click(event, inM))
             boton.bind("<Enter>", lambda event, boton=boton: eventos.bot_m(event))
             boton.bind("<Leave>", lambda event, boton=boton: eventos.bot_m2(event))
             if i < 27:
-                boton.place(x=(i % 4) * 100, y=(i // 4) * 55 + 100)
+                boton.place(x=(i % 4) * 100, y=(i // 4) * 50 + 80)
             elif i ==28:
                 pass
             else:
-                boton.place(x=(i % 4) * 100, y=(i // 4) * 55 + 100)
+                boton.place(x=(i % 4) * 100, y=(i // 4) * 50 + 80)
                 
 
             self.botones.append(boton)
